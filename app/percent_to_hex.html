@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <title>Konverter Persen ke Hex</title>
+     <style>
+          body {
+               font-family: sans-serif;
+               background-color: #f4f4f4;
+               margin: 0;
+               display: grid;
+               place-items: center;
+               min-height: 100vh;
+          }
+
+          #container {
+               display: grid;
+               grid-template-columns: 1fr;
+               gap: 20px;
+               width: 90%;
+               /* Lebar responsif */
+               max-width: 350px;
+               /* Batas lebar maksimum untuk desktop */
+               padding: 20px;
+               background-color: #fff;
+               border-radius: 8px;
+               box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+               margin-top: 20px;
+          }
+
+          h2 {
+               text-align: center;
+               margin-bottom: 10px;
+               color: #333;
+          }
+
+          label {
+               display: block;
+               margin-bottom: 5px;
+               color: #555;
+          }
+
+          input[type="number"] {
+               width: calc(100% - 18px);
+               padding: 8px;
+               margin-bottom: 10px;
+               border: 1px solid #ccc;
+               border-radius: 4px;
+               box-sizing: border-box;
+          }
+
+          button {
+               width: 100%;
+               padding: 10px 20px;
+               background-color: #4CAF50;
+               color: white;
+               border: none;
+               border-radius: 4px;
+               cursor: pointer;
+               transition: background-color 0.3s ease;
+          }
+
+          button:hover {
+               background-color: #45a049;
+          }
+
+          #result {
+               margin-top: 10px;
+               font-weight: bold;
+               color: #333;
+               text-align: center;
+          }
+
+          #default-data {
+               margin-top: 20px;
+          }
+
+          #default-data h2 {
+               font-size: 1.2em;
+               margin-bottom: 15px;
+               text-align: center;
+          }
+
+          #default-data ul {
+               list-style: none;
+               padding: 0;
+          }
+
+          #default-data li {
+               margin-bottom: 8px;
+               color: #555;
+               text-align: center;
+          }
+
+          /* Media Query untuk Layar yang Lebih Kecil (Mobile) */
+          @media (max-width: 600px) {
+               #container {
+                    width: 95%;
+                    /* Lebar lebih lebar pada mobile */
+                    max-width: none;
+                    /* Hapus batas lebar maksimum */
+               }
+          }
+     </style>
+</head>
+
+<body>
+
+     <div id="container">
+          <h2>Konverter Persen ke Hex</h2>
+          <label for="percentage">Persentase:</label>
+          <input type="number" id="percentage" min="0" max="100">
+          <button onclick="convert()">Konversi</button>
+          <div id="result"></div>
+     </div>
+
+     <div id="default-data">
+          <h2>Data Default</h2>
+          <ul>
+               <li>100% - Hex: #FF, RGB: rgb(255, 255, 255), Android XML: #FF000000</li>
+               <li>95% - Hex: #F2, RGB: rgb(242, 242, 242), Android XML: #F2000000</li>
+               <li>90% - Hex: #E6, RGB: rgb(230, 230, 230), Android XML: #E6000000</li>
+               <li>85% - Hex: #D9, RGB: rgb(217, 217, 217), Android XML: #D9000000</li>
+               <li>80% - Hex: #CC, RGB: rgb(204, 204, 204), Android XML: #CC000000</li>
+               <li>75% - Hex: #BF, RGB: rgb(191, 191, 191), Android XML: #BF000000</li>
+               <li>70% - Hex: #B3, RGB: rgb(179, 179, 179), Android XML: #B3000000</li>
+               <li>65% - Hex: #A6, RGB: rgb(166, 166, 166), Android XML: #A6000000</li>
+               <li>60% - Hex: #99, RGB: rgb(153, 153, 153), Android XML: #99000000</li>
+               <li>55% - Hex: #8C, RGB: rgb(140, 140, 140), Android XML: #8C000000</li>
+               <li>50% - Hex: #80, RGB: rgb(128, 128, 128), Android XML: #80000000</li>
+               <li>45% - Hex: #73, RGB: rgb(115, 115, 115), Android XML: #73000000</li>
+               <li>40% - Hex: #66, RGB: rgb(102, 102, 102), Android XML: #66000000</li>
+               <li>35% - Hex: #59, RGB: rgb(89, 89, 89), Android XML: #59000000</li>
+               <li>30% - Hex: #4D, RGB: rgb(77, 77, 77), Android XML: #4D000000</li>
+               <li>25% - Hex: #40, RGB: rgb(64, 64, 64), Android XML: #40000000</li>
+               <li>20% - Hex: #33, RGB: rgb(51, 51, 51), Android XML: #33000000</li>
+               <li>15% - Hex: #26, RGB: rgb(38, 38, 38), Android XML: #26000000</li>
+               <li>10% - Hex: #1A, RGB: rgb(26, 26, 26), Android XML: #1A000000</li>
+               <li>5% - Hex: #0D, RGB: rgb(13, 13, 13), Android XML: #0D000000</li>
+               <li>0% - Hex: #00, RGB: rgb(0, 0, 0), Android XML: #00000000</li>
+          </ul>
+     </div>
+
+     <script>
+          function convert() {
+               const percentage = document.getElementById("percentage").value;
+               const decimalValue = percentage / 100;
+
+               // Konversi ke Hex
+               let hexValue = Math.round(decimalValue * 255).toString(16).toUpperCase();
+               hexValue = hexValue.length === 1 ? "0" + hexValue : hexValue; // Tambahkan 0 di depan jika perlu
+
+               // Konversi ke RGB
+               const r = Math.round(decimalValue * 255);
+               const g = Math.round(decimalValue * 255);
+               const b = Math.round(decimalValue * 255);
+               const rgbValue = `rgb(${r}, ${g}, ${b})`;
+
+               // Format warna untuk Android XML (#000000)
+               const androidXMLColor = `#${hexValue}00`;
+
+               document.getElementById("result").innerHTML = `
+                    Hex: #${hexValue}<br>
+                    RGB: ${rgbValue}<br>
+                    Android XML: ${androidXMLColor}
+               `;
+          }
+     </script>
+</body>
+
+</html>
