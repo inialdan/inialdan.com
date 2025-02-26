@@ -38,6 +38,30 @@
 
                </div>
           </div>
+
+          <script type="module">
+               // Import the functions you need from the SDKs you need
+               import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+               import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-analytics.js";
+               // TODO: Add SDKs for Firebase products that you want to use
+               // https://firebase.google.com/docs/web/setup#available-libraries
+
+               // Your web app's Firebase configuration
+               // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+               const firebaseConfig = {
+                    apiKey: "AIzaSyBCurmqtBpbeeWBbEKLRB9FwgTUXllvfwQ",
+                    authDomain: "inialdan-com.firebaseapp.com",
+                    projectId: "inialdan-com",
+                    storageBucket: "inialdan-com.firebasestorage.app",
+                    messagingSenderId: "613448818105",
+                    appId: "1:613448818105:web:b9b735fee70255ae482a68",
+                    measurementId: "G-2J823HDZTV"
+               };
+
+               // Initialize Firebase
+               const app = initializeApp(firebaseConfig);
+               const analytics = getAnalytics(app);
+          </script>
 </body>
 
 </html>
